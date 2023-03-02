@@ -9,7 +9,6 @@ namespace banking
         class Account
         {
 
-
             private static int lastAccountNumber = 0;
 
             public int AccountNumber { get; private set; }

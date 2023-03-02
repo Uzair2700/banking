@@ -1,4 +1,5 @@
-﻿using System;
+﻿using banks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -19,14 +20,25 @@ namespace banking
             Customer = new List<Customers>();
         }
 
-        public void ViewCustomers()
+        public void create_CUSTOMER()
         {
-            foreach (Customers customer in Customer)
-            {
-                Console.WriteLine(customer.Name);
+            // Show list of all customers
+            Console.Write("\nEnter customer name: ");
+            string customerName = Console.ReadLine();
 
-            }
+            Console.Write("Enter customer email: ");
+            string customerEmail = Console.ReadLine();
+
+            Console.Write("Enter customer password: ");
+            string customerPassword = Console.ReadLine();
+
+
+
+            CreateCustomer(customerName, customerEmail, customerPassword);
         }
+
+
+
 
         public void CreateCustomer(string name, string email, string password)
         {
@@ -34,10 +46,47 @@ namespace banking
 
         }
 
+
+        public void ViewCustomers()
+        {
+            Console.WriteLine("Customers:");
+
+            foreach (Customers customer in Customer)
+            {
+                Console.WriteLine($"\n{customer.Name}");
+
+            }
+
+            Console.ReadLine();
+        }
+
+
+
+
+        public void create_ACCOUNT()
+        {
+            // Show list of all customers
+            Console.Write("\nChoose customer to make account for: ");
+            ViewCustomers();
+
+            string CustomerNR = Console.ReadLine();
+
+            Console.Write("Enter balance amount: ");
+            decimal balance = decimal.Parse(Console.ReadLine());
+
+            CreateAccount(CustomerNR, balance);
+
+        }
+
+        private void CreateAccount(string customerNR, decimal balance)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreateAccount(Customers customer, decimal balance)
         {
             customer.Accounts.Add(new Account(customer, balance));
-
         }
+
     }
 }
